@@ -9,8 +9,7 @@ go build sample-scheduler.go
 # run
 * execute the following command on k8s master
 ```
-sudo ./sample-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes/scheduler.conf --config=scheduler-config.yaml --secure-port=10260
-```
+./sample-scheduler --logtostderr=true --v=2 --config=scheduler-config.yaml --secure-port=10261```
 
 # test
 * run this command

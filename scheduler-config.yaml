@@ -1,15 +1,21 @@
 apiVersion: kubescheduler.config.k8s.io/v1beta2
 kind: KubeSchedulerConfiguration
+clientConnection:
+  acceptContentTypes: ""
+  burst: 100
+  contentType: application/vnd.kubernetes.protobuf
+  kubeconfig: /etc/kubernetes/kubelet.kubeconfig
+  qps: 50
+healthzBindAddress: 0.0.0.0:10260
+metricsBindAddress: 0.0.0.0:10260
 leaderElection:
   leaderElect: false
-clientConnection:
-  kubeconfig: "/etc/kubernetes/admin.conf"
 profiles:
-- schedulerName: sample-scheduler
-  plugins:
-    preFilter:
-      enabled:
-        - name: SampleScheduler
-    postBind:
-      enabled:
-        - name: SampleScheduler
+  - schedulerName: sample-scheduler
+    plugins:
+      preFilter:
+        enabled:
+          - name: SampleScheduler
+      postBind:
+        enabled:
+          - name: SampleScheduler
